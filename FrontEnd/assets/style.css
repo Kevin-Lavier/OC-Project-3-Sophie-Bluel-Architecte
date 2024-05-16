@@ -52,6 +52,7 @@ body {
 	margin:auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
+	background-color: #FFFEF8;
 }
 header {
 	display: flex;
@@ -186,3 +187,34 @@ footer nav ul {
 	margin: 2em
 }
 
+
+/* ........Filters.........*/
+
+#filters{
+	display: flex;
+	justify-content: center;
+	margin: 50px 0;
+}
+
+#filters button {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: #1D6154;
+	background-color: transparent;
+	border: 2px solid #1D6154;
+	margin: 0 10px;
+	padding: 10px 20px;
+	border-radius: 60px;
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s;
+  }
+  
+  #filters button.active {
+	background-color: #1D6154;
+	color: white;
+  }
+  
+  #filters button:hover {
+	background-color: #1D6154;
+	color: white;
+  }
