@@ -96,3 +96,18 @@ function filterWorks(categoryId) {
       : works.filter((work) => work.categoryId == categoryId);
   displayWorks(filteredWorks);
 }
+
+// Login --> Logout in index.html
+document.addEventListener("DOMContentLoaded", () => {
+  const loginLink = document.getElementById("login");
+  const token = localStorage.getItem("token");
+
+  if (token) {
+    loginLink.textContent = "logout";
+    loginLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      localStorage.removeItem("token");
+      window.location.href = "login.html";
+    });
+  }
+});

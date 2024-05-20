@@ -229,3 +229,63 @@ footer nav ul {
   }
 
   
+/* ......MODAL...... */
+/* first dislay Modal : gallery */
+
+
+* {
+	box-sizing: border-box;
+}
+
+.modal {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.2);
+
+}
+
+.modal-wrapper {
+	text-align: center;
+	overflow: auto;
+	width: 600px;
+	max-width: calc(100vw - 20px);
+	max-height: calc(100vh - 20px);
+	padding: 20px;
+	background-color: #FFF;
+}
+
+.js-modal i {
+    font-size: 24px; /* Ajustez la taille selon vos besoins */
+    color: #000; /* Ajustez la couleur selon vos besoins */
+    cursor: pointer;
+}
+
+/* Style openModal when a is clicked*/
+
+#projets-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Ajoute un espace entre le titre et le lien */
+    margin: 0 auto; /* Centre le conteneur horizontalement */
+}
+
+#projets-container h2 {
+    margin: 0 25px;
+}
+
+#projets-container a {
+    display: flex;
+    align-items: center;
+}
+
+#projets-container a i {
+    margin-right: 10px; /* Espace entre l'icône et le texte */
+    font-size: 18px; /* Ajustez la taille de l'icône si nécessaire */
+}
