@@ -6,12 +6,13 @@ let categories = [];
 const fetchWorks = fetch("http://localhost:5678/api/works");
 const fetchCategories = fetch("http://localhost:5678/api/categories");
 
-// Load DOM before execute the function getWorks and addFilterEventListener
+// Load DOM before execute the function getWorks and addFilterEventListeners
 
 document.addEventListener("DOMContentLoaded", () => {
   getWorks();
   getCategories();
   addFilterEventListeners();
+  changeLogStatus(); // Appel de la fonction pour vérifier l'authentification
 });
 
 // Fetch GET api/works
@@ -45,7 +46,7 @@ async function getCategories() {
   }
 }
 
-// Function that manipulate DOM
+// Function that manipulates DOM
 
 function displayWorks(works) {
   const gallery = document.querySelector(".gallery");
@@ -97,9 +98,11 @@ function filterWorks(categoryId) {
   displayWorks(filteredWorks);
 }
 
-// Login --> Logout in index.html
-document.addEventListener("DOMContentLoaded", () => {
+//......AUTH STATUS CHECK
+
+function changeLogStatus() {
   const loginLink = document.getElementById("login");
+
   const token = localStorage.getItem("token");
 
   if (token) {
@@ -110,4 +113,4 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = "login.html";
     });
   }
-});
+}
