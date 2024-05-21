@@ -18,15 +18,48 @@
 </head>
 
 <body>
-
-
+	<div id="top-bar" class="top-bar" style="display: none;">
+		<span><i class="fa-solid fa-pen-to-square"></i> Mode édition</span>
+	</div>
 	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal"
 		style="display: none;">
 		<div class="modal-wrapper js-modal-stop">
 			<span class="js-modal-close"><i class="fas fa-times"></i></span>
 			<h2 id="titlemodal">Galerie Photo</h2>
+			<div class="modal-gallery"></div>
+			<hr class="line">
+			<button class="add-photo-button">Ajouter une photo</button>
 		</div>
 	</aside>
+
+	<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal"
+		style="display: none;">
+		<div class="modal-wrapper js-modal-stop">
+			<span class="js-modal-back"><i class="fa-solid fa-arrow-left"></i></span>
+			<span class="js-modal-close"><i class="fas fa-times"></i></span>
+			<h2 id="titlemodal">Ajout Photo</h2>
+			<div class="fenetre-ajout">
+				<i class="fas fa-image large-icon" style="color: #B9C5CC;"></i>
+				<input class="hidden" type="file" id="input-photo" accept="image/jpeg, image/png" name="image" required>
+				<label for="input-photo">+ Ajouter Photo</label>
+				<p>jpg, png : 4mo max</p>
+				<p id="photo-error"></p>
+			</div>
+			<div id="input-modale">
+				<form id="input-form" action="#">
+					<label for="title">Titre</label>
+					<input type="text" id="input-texte" name="title" maxlength="40" required>
+					<p id="title-error"></p>
+					<label for="category">Catégorie</label>
+					<select name="category" id="categorie" required></select>
+					<p id="category-error"></p>
+					<hr class="line">
+					<button class="add-photo-button" type="submit">Valider</button>
+				</form>
+			</div>
+		</div>
+	</aside>
+
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 		<nav>
@@ -60,7 +93,7 @@
 		<section id="portfolio">
 			<div id="projets-container">
 				<h2 id="projets">Mes Projets</h2>
-				<a href="#modal1" class="js-modal"><i class="fa-solid fa-pen-to-square"></i> modifier</a>
+				<a href="#modal1" id="edit-link" class="js-modal"><i class="fa-solid fa-pen-to-square"></i> modifier</a>
 			</div>
 			<div id="filters">
 				<button data-id="all" class="active">Tous</button>

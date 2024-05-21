@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   getWorks();
   getCategories();
   addFilterEventListeners();
-  changeLogStatus(); // Appel de la fonction pour vérifier l'authentification
+  checkAuthStatus(); // Appel de la fonction pour vérifier l'authentification
 });
 
 // Fetch GET api/works
@@ -100,17 +100,32 @@ function filterWorks(categoryId) {
 
 //......AUTH STATUS CHECK
 
-function changeLogStatus() {
+function checkAuthStatus() {
   const loginLink = document.getElementById("login");
+  const topBar = document.getElementById("top-bar");
+  const editLink = document.getElementById("edit-link");
 
+  // Vérifiez si le token est présent dans le stockage local
   const token = localStorage.getItem("token");
 
   if (token) {
+    // Si le token est présent, changer "login" en "logout", afficher la barre noire et le lien "modifier"
     loginLink.textContent = "logout";
+    topBar.style.display = "flex"; // Affiche la barre noire
+    if (editLink) {
+      editLink.style.display = "block"; // Affiche le lien "modifier"
+    }
     loginLink.addEventListener("click", (event) => {
       event.preventDefault();
+      // Supprimez le token et redirigez vers la page de connexion
       localStorage.removeItem("token");
       window.location.href = "login.html";
     });
+  } else {
+    // Si le token n'est pas présent, cacher la barre noire et le lien "modifier"
+    topBar.style.display = "none";
+    if (editLink) {
+      editLink.style.display = "none"; // Cache le lien "modifier"
+    }
   }
 }

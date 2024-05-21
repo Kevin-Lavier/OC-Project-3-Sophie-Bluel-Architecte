@@ -150,29 +150,29 @@ li:hover {
 	width: 50%;
 margin: auto;
 }
-#contact > *, #login >*{
+#contact > *, #login >*,#input-modale >*{
 	text-align: center;
 }
-#contact h2, #login h2{
+#contact h2, #login h2, #input-modale h2{
 	margin-bottom: 20px;
 }
-#contact form, #login form{
+#contact form, #login form, #input-modale form{
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input, #login input{
+#contact input, #login input, #input-modale input{
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label, #login label {
+#contact label, #login label, #input-modale label{
 	margin: 2em 0 1em 0;
 }
-#contact textarea, #login textarea{
+#contact textarea, #login textarea, #input-modale textarea{
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
@@ -228,52 +228,13 @@ footer nav ul {
 	color: white;
   }
 
-  
-/* ......MODAL...... */
-/* first dislay Modal : gallery */
-
-
-* {
-	box-sizing: border-box;
-}
-
-.modal {
-	position: fixed;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.2);
-
-}
-
-.modal-wrapper {
-	text-align: center;
-	overflow: auto;
-	width: 600px;
-	max-width: calc(100vw - 20px);
-	max-height: calc(100vh - 20px);
-	padding: 20px;
-	background-color: #FFF;
-}
-
-.js-modal i {
-    font-size: 24px; /* Ajustez la taille selon vos besoins */
-    color: #000; /* Ajustez la couleur selon vos besoins */
-    cursor: pointer;
-}
-
-/* Style openModal when a is clicked*/
-
+/*  Style "modifier" to have access to the modal when icon is clicked */
 #projets-container {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px; /* Ajoute un espace entre le titre et le lien */
-    margin: 0 auto; /* Centre le conteneur horizontalement */
+    gap: 10px;
+    margin: 0 auto; 
 }
 
 #projets-container h2 {
@@ -286,6 +247,215 @@ footer nav ul {
 }
 
 #projets-container a i {
-    margin-right: 10px; /* Espace entre l'icône et le texte */
-    font-size: 18px; /* Ajustez la taille de l'icône si nécessaire */
+    margin-right: 10px;
+    font-size: 18px;
 }
+
+  /* ......MODAL...... */
+
+* {
+	box-sizing: border-box;
+}
+#edit-link {
+    display: none;
+}
+
+
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.top-bar span {
+    display: flex;
+    align-items: center;
+    font-size: 1em;
+}
+
+.top-bar i {
+    margin-right: 10px;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-wrapper {
+    text-align: center;
+    width: 90%;
+    max-width: 630px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-height: 87%;
+    height: auto;
+    overflow-y: auto;
+}
+
+.js-modal-stop {
+    position: relative;
+}
+
+
+
+.js-modal-close i {
+    display: flex;
+    flex-direction: row-reverse;
+	cursor: pointer;
+}
+
+
+
+.modal-gallery {
+	margin: 20px 62px 0 62px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Espacement entre les éléments */
+    padding: 20px;
+    overflow: hidden; /* Empêche les éléments de déborder de la galerie */
+}
+
+
+.add-photo-button {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: #ffffff;
+    background: #1D6154;
+    border: 2px solid #1D6154;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+
+/* Trash icon */
+.img-container {
+	position: relative;
+	display: inline-block;
+  }
+  
+  .img-container img {
+	width: 77px;
+	height: auto;
+	display: block;
+	margin-bottom: 20px;
+  }
+  
+  .trash-icon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: white;
+	background-color: black;
+	padding: 6px;
+	border-radius:5px;
+	cursor: pointer;
+	z-index: 10;
+  }
+
+  .js-modal-back{
+display: flex;
+}
+
+#input-modale{
+	width: 75%;
+margin: auto;
+}
+
+#input-modale select{
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	margin-bottom: 50px;
+}
+
+.fenetre-ajout{
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	width: 100%;
+	padding: 20px 200px;
+	background: #E8F1F6;
+}
+.fenetre-ajout p{
+	margin-top: 15px;
+}
+
+.fenetre-ajout {
+    margin-top: 20px;
+}
+
+.fenetre-ajout img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.fenetre-ajout input[type="file"] {
+    display: none;
+}
+
+.fenetre-ajout label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.fenetre-ajout i{
+	margin-bottom: 30px;
+}
+
+.line {
+    border: 1px solid #B3B3B3;
+    width: 75%;
+    margin-bottom: 30px;
+}
+
+.add-photo-button {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: #ffffff;
+    background: #1D6154;
+    border: 2px solid #1D6154;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 60px;
+    cursor: pointer;
+}
+
+.large-icon {
+    font-size: 70px; /* Ajustez la taille selon vos besoins */
+    color: #B9C5CC;
+}
+
+.hidden {
+    display: none;
+}
+
+#title-error, #photo-error, #category-error {
+	color: red;
+	margin-top: 10px;
+  }
+  
