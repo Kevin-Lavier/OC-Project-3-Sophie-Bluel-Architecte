@@ -21,23 +21,21 @@
 	<div id="top-bar" class="top-bar" style="display: none;">
 		<span><i class="fa-solid fa-pen-to-square"></i> Mode édition</span>
 	</div>
-	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal"
-		style="display: none;">
+	<div id="modal1" class="modal" aria-hidden="true" aria-labelledby="titlemodal1" style="display: none;">
 		<div class="modal-wrapper js-modal-stop">
 			<span class="js-modal-close"><i class="fas fa-times"></i></span>
-			<h2 id="titlemodal">Galerie Photo</h2>
+			<h2 id="titlemodal1">Galerie Photo</h2>
 			<div class="modal-gallery"></div>
 			<hr class="line">
 			<button class="add-photo-button">Ajouter une photo</button>
 		</div>
-	</aside>
+	</div>
 
-	<aside id="modal2" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal"
-		style="display: none;">
+	<div id="modal2" class="modal" aria-hidden="true" aria-labelledby="titlemodal2" style="display: none;">
 		<div class="modal-wrapper js-modal-stop">
 			<span class="js-modal-back"><i class="fa-solid fa-arrow-left"></i></span>
 			<span class="js-modal-close"><i class="fas fa-times"></i></span>
-			<h2 id="titlemodal">Ajout Photo</h2>
+			<h2 id="titlemodal2">Ajout Photo</h2>
 			<div class="fenetre-ajout">
 				<i class="fas fa-image large-icon" style="color: #B9C5CC;"></i>
 				<input class="hidden" type="file" id="input-photo" accept="image/jpeg, image/png" name="image" required>
@@ -47,18 +45,22 @@
 			</div>
 			<div id="input-modale">
 				<form id="input-form" action="#">
-					<label for="title">Titre</label>
+					<label for="input-texte">Titre</label>
 					<input type="text" id="input-texte" name="title" maxlength="40" required>
 					<p id="title-error"></p>
-					<label for="category">Catégorie</label>
-					<select name="category" id="categorie" required></select>
+					<label for="categorie">Catégorie</label>
+					<select name="category" id="categorie" required>
+						<option value="">Sélectionner une catégorie</option>
+						<option value="1">Catégorie 1</option>
+						<option value="2">Catégorie 2</option>
+					</select>
 					<p id="category-error"></p>
 					<hr class="line">
 					<button class="add-photo-button" type="submit">Valider</button>
 				</form>
 			</div>
 		</div>
-	</aside>
+	</div>
 
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -73,8 +75,9 @@
 	</header>
 	<main>
 		<section id="introduction">
+			<h2>Introduction</h2>
 			<figure>
-				<img src="./assets/images/sophie-bluel.png" alt="">
+				<img src="./assets/images/sophie-bluel.png" alt="Photo de Sophie Bluel">
 			</figure>
 			<article>
 				<h2>Designer d'espace</h2>

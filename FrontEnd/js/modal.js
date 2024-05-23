@@ -1,3 +1,85 @@
+let modal = null;
+
+const openModal = function (e) {
+  e.preventDefault();
+  const target = document.querySelector(
+    e.target.closest(".js-modal").getAttribute("href")
+  );
+  target.style.display = "flex";
+  target.removeAttribute("aria-hidden");
+  target.setAttribute("aria-modal", "true");
+  modal = target;
+  modal.addEventListener("click", closeModal);
+  modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
+  modal
+    .querySelector(".js-modal-stop")
+    .addEventListener("click", stopPropagation);
+
+  // Afficher la galerie dans la modale si c'est modal1
+  if (modal.id === "modal1") {
+    displayModalGallery(works);
+  }
+};
+
+const closeModal = function (e) {
+  if (modal === null) return;
+  e.preventDefault();
+  modal.style.display = "none";
+  modal.setAttribute("aria-hidden", "true");
+  modal.removeAttribute("aria-modal");
+  modal.removeEventListener("click", closeModal);
+  if (modal.querySelector(".js-modal-close")) {
+    modal
+      .querySelector(".js-modal-close")
+      .removeEventListener("click", closeModal);
+  }
+  if (modal.querySelector(".js-modal-stop")) {
+    modal
+      .querySelector(".js-modal-stop")
+      .removeEventListener("click", stopPropagation);
+  }
+  modal = null;
+};
+
+const stopPropagation = function (e) {
+  e.stopPropagation();
+};
+
+document.querySelectorAll(".js-modal").forEach((a) => {
+  a.addEventListener("click", openModal);
+});
+
+window.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" || e.key === "Esc") {
+    closeModal(e);
+  }
+});
+
+// Fonction pour afficher la galerie dans la modale
+function displayModalGallery(works) {
+  const modalGallery = document.querySelector(".modal-gallery");
+  modalGallery.innerHTML = ""; // Clear existing content
+
+  works.forEach((work) => {
+    const imgContainer = document.createElement("div");
+    imgContainer.classList.add("img-container");
+
+    const img = document.createElement("img");
+    img.src = work.imageUrl;
+    img.alt = work.title;
+
+    const trashIcon = document.createElement("i");
+    trashIcon.classList.add("fa-solid", "fa-trash-can", "trash-icon");
+    trashIcon.dataset.id = work.id; // Store the work ID in a data attribute
+
+    trashIcon.addEventListener("click", deleteWork);
+
+    imgContainer.appendChild(img);
+    imgContainer.appendChild(trashIcon);
+    modalGallery.appendChild(imgContainer);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   populateCategories();
 
@@ -156,88 +238,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   validateForm(); // Initial call to set the correct button style
 });
-
-let modal = null;
-
-const openModal = function (e) {
-  e.preventDefault();
-  const target = document.querySelector(
-    e.target.closest(".js-modal").getAttribute("href")
-  );
-  target.style.display = "flex";
-  target.removeAttribute("aria-hidden");
-  target.setAttribute("aria-modal", "true");
-  modal = target;
-  modal.addEventListener("click", closeModal);
-  modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
-  modal
-    .querySelector(".js-modal-stop")
-    .addEventListener("click", stopPropagation);
-
-  // Afficher la galerie dans la modale si c'est modal1
-  if (modal.id === "modal1") {
-    displayModalGallery(works);
-  }
-};
-
-const closeModal = function (e) {
-  if (modal === null) return;
-  e.preventDefault();
-  modal.style.display = "none";
-  modal.setAttribute("aria-hidden", "true");
-  modal.removeAttribute("aria-modal");
-  modal.removeEventListener("click", closeModal);
-  if (modal.querySelector(".js-modal-close")) {
-    modal
-      .querySelector(".js-modal-close")
-      .removeEventListener("click", closeModal);
-  }
-  if (modal.querySelector(".js-modal-stop")) {
-    modal
-      .querySelector(".js-modal-stop")
-      .removeEventListener("click", stopPropagation);
-  }
-  modal = null;
-};
-
-const stopPropagation = function (e) {
-  e.stopPropagation();
-};
-
-document.querySelectorAll(".js-modal").forEach((a) => {
-  a.addEventListener("click", openModal);
-});
-
-window.addEventListener("keydown", function (e) {
-  if (e.key === "Escape" || e.key === "Esc") {
-    closeModal(e);
-  }
-});
-
-// Fonction pour afficher la galerie dans la modale
-function displayModalGallery(works) {
-  const modalGallery = document.querySelector(".modal-gallery");
-  modalGallery.innerHTML = ""; // Clear existing content
-
-  works.forEach((work) => {
-    const imgContainer = document.createElement("div");
-    imgContainer.classList.add("img-container");
-
-    const img = document.createElement("img");
-    img.src = work.imageUrl;
-    img.alt = work.title;
-
-    const trashIcon = document.createElement("i");
-    trashIcon.classList.add("fa-solid", "fa-trash-can", "trash-icon");
-    trashIcon.dataset.id = work.id; // Store the work ID in a data attribute
-
-    trashIcon.addEventListener("click", deleteWork);
-
-    imgContainer.appendChild(img);
-    imgContainer.appendChild(trashIcon);
-    modalGallery.appendChild(imgContainer);
-  });
-}
 
 // Fonction pour envoyer une requête DELETE à l'API
 async function deleteWork(event) {

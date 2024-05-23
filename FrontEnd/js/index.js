@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
   getWorks();
   getCategories();
   addFilterEventListeners();
-  checkAuthStatus(); // Appel de la fonction pour vérifier l'authentification
+  checkAuthStatus();
 });
 
 // Fetch GET api/works
@@ -105,27 +105,27 @@ function checkAuthStatus() {
   const topBar = document.getElementById("top-bar");
   const editLink = document.getElementById("edit-link");
 
-  // Vérifiez si le token est présent dans le stockage local
+  // Check if token is present in localStorage
   const token = localStorage.getItem("token");
 
   if (token) {
-    // Si le token est présent, changer "login" en "logout", afficher la barre noire et le lien "modifier"
+    // if token OK, "login" ---> "Logout", Display black bar and icon to get access to the modal "Modifier"
     loginLink.textContent = "logout";
-    topBar.style.display = "flex"; // Affiche la barre noire
+    topBar.style.display = "flex"; // Display black bar
     if (editLink) {
-      editLink.style.display = "block"; // Affiche le lien "modifier"
+      editLink.style.display = "block"; // Icon to get access to the modal "Modifier"
     }
     loginLink.addEventListener("click", (event) => {
       event.preventDefault();
-      // Supprimez le token et redirigez vers la page de connexion
+      // Delete Token and go to index.html with new fresh features
       localStorage.removeItem("token");
       window.location.href = "login.html";
     });
   } else {
-    // Si le token n'est pas présent, cacher la barre noire et le lien "modifier"
+    // If no token, no display
     topBar.style.display = "none";
     if (editLink) {
-      editLink.style.display = "none"; // Cache le lien "modifier"
+      editLink.style.display = "none"; // Hide icon to get access to the modal "Modifier"
     }
   }
 }
