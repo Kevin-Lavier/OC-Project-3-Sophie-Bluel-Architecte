@@ -81,8 +81,6 @@ function displayModalGallery(works) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  populateCategories();
-
   const form = document.getElementById("input-form");
   const titleInput = document.getElementById("input-texte");
   const titleError = document.getElementById("title-error");
@@ -299,25 +297,37 @@ document.querySelectorAll(".js-modal-close").forEach((closeButton) => {
 });
 
 // Fonction pour ajouter les catégories au select
-function populateCategories() {
-  const categories = [
-    { id: 1, name: "Objets" },
-    { id: 2, name: "Appartements" },
-    { id: 3, name: "Hôtels et restaurants" },
-  ];
-
+async function populateCategories() {
   const select = document.getElementById("categorie");
+
+  // Vérifier si le select existe
+  if (!select) {
+    console.error("L'élément select n'a pas été trouvé");
+    return;
+  }
+
+  // Effacer le contenu existant
   select.innerHTML = ""; // Clear existing content
 
-  categories.forEach((category) => {
-    const option = document.createElement("option");
-    option.value = category.id;
-    option.textContent = category.name;
-    select.appendChild(option);
-  });
+  try {
+    const response = await fetch("http://localhost:5678/api/categories");
+    if (response.ok) {
+      const categories = await response.json();
+
+      categories.forEach((category) => {
+        const option = document.createElement("option");
+        option.value = category.id;
+        option.textContent = category.name;
+        select.appendChild(option);
+      });
+    } else {
+      console.error("Erreur lors de la récupération des catégories");
+    }
+  } catch (error) {
+    console.error("Erreur lors de la récupération des catégories", error);
+  }
 }
 
-// Appeler la fonction populateCategories au chargement de la page ou à l'ouverture de la modale
 document.addEventListener("DOMContentLoaded", () => {
   populateCategories();
 });
