@@ -47,6 +47,8 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
+
+/* Global settings */
 body {
 	max-width: 1140px;
 	margin:auto;
@@ -68,10 +70,6 @@ a{
 	color: inherit;
 }
 
-.bold-link{
-	font-weight: bold;
-}
-
 h1{
 	display: flex;
 	flex-direction: column;
@@ -85,7 +83,6 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2{
@@ -144,7 +141,6 @@ li:hover {
 
 .gallery img {
 	width: 100%;
-
 }
 #contact,#login{
 	width: 50%;
@@ -196,6 +192,10 @@ footer nav ul {
 	margin: 2em
 }
 
+/* login Bold when user on login.html */
+.bold-link{
+	font-weight: bold;
+}
 
 /* ........Filters.........*/
 
@@ -253,6 +253,7 @@ footer nav ul {
 
   /* ......MODAL...... */
 
+/*Global settings*/
 * {
 	box-sizing: border-box;
 }
@@ -260,7 +261,7 @@ footer nav ul {
     display: none;
 }
 
-
+/* Black top-bar settings*/
 .top-bar {
     display: flex;
     align-items: center;
@@ -285,6 +286,7 @@ footer nav ul {
     margin-right: 10px;
 }
 
+/* Modal settings */
 .modal {
     position: fixed;
     top: 0;
@@ -315,16 +317,13 @@ footer nav ul {
     position: relative;
 }
 
-
-
 .js-modal-close i {
     display: flex;
     flex-direction: row-reverse;
 	cursor: pointer;
 }
 
-
-
+/* Display modal gallery settings*/
 .modal-gallery {
 	margin: 20px 62px 0 62px;
     display: flex;
@@ -334,7 +333,7 @@ footer nav ul {
     overflow: hidden; /* Empêche les éléments de déborder de la galerie */
 }
 
-
+/*Button to get access to the second modal*/
 .add-photo-button {
     font-family: 'Syne';
     font-weight: 700;
@@ -348,7 +347,7 @@ footer nav ul {
 }
 
 
-/* Trash icon */
+/* Trash icon to delete project */
 .img-container {
 	position: relative;
 	display: inline-block;
@@ -377,6 +376,7 @@ footer nav ul {
 display: flex;
 }
 
+/* Form settings */
 #input-modale{
 	width: 75%;
 margin: auto;
@@ -390,6 +390,7 @@ margin: auto;
 	margin-bottom: 50px;
 }
 
+/* Visualization of selected picture by user */
 .fenetre-ajout{
 	display: flex;
 	flex-direction: column;
@@ -427,12 +428,23 @@ margin: auto;
 	margin-bottom: 30px;
 }
 
+.hidden {
+    display: none;
+}
+
+.large-icon {
+    font-size: 70px;
+    color: #B9C5CC;
+}
+
+/* Decoration line */
 .line {
     border: 1px solid #B3B3B3;
     width: 75%;
     margin-bottom: 30px;
 }
 
+/* Button settings to send a projet */
 .add-photo-button {
     font-family: 'Syne';
     font-weight: 700;
@@ -445,15 +457,7 @@ margin: auto;
     cursor: pointer;
 }
 
-.large-icon {
-    font-size: 70px; /* Ajustez la taille selon vos besoins */
-    color: #B9C5CC;
-}
-
-.hidden {
-    display: none;
-}
-
+/* Error message */
 #title-error, #photo-error, #category-error {
 	color: red;
 	margin-top: 10px;

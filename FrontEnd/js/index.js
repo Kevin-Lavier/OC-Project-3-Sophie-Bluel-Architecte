@@ -1,5 +1,6 @@
 //......API GET WORKS
 
+// Global variable
 let works = [];
 let categories = [];
 
@@ -88,7 +89,7 @@ function addFilterEventListeners() {
   });
 }
 
-// Filters then display projects per category
+// Filters then display projects per category with ternaire condition
 
 function filterWorks(categoryId) {
   const filteredWorks =

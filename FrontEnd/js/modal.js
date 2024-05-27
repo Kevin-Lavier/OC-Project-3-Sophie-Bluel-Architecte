@@ -1,7 +1,11 @@
+// Global variable
+
 let modal = null;
 
+// Function Open Modal
 const openModal = function (e) {
   e.preventDefault();
+  // Select bloc "modifier" that will open modal when clicked
   const target = document.querySelector(
     e.target.closest(".js-modal").getAttribute("href")
   );
@@ -15,12 +19,13 @@ const openModal = function (e) {
     .querySelector(".js-modal-stop")
     .addEventListener("click", stopPropagation);
 
-  // Afficher la galerie dans la modale si c'est modal1
+  // Display gallery in modal1
   if (modal.id === "modal1") {
     displayModalGallery(works);
   }
 };
 
+//Function Close Modal with different ways to close it
 const closeModal = function (e) {
   if (modal === null) return;
   e.preventDefault();
@@ -55,11 +60,12 @@ window.addEventListener("keydown", function (e) {
   }
 });
 
-// Fonction pour afficher la galerie dans la modale
+// Function that display gallery in modal
 function displayModalGallery(works) {
   const modalGallery = document.querySelector(".modal-gallery");
-  modalGallery.innerHTML = ""; // Clear existing content
+  modalGallery.innerHTML = "";
 
+  // Loop to manipulate DOM and create dynamically gallery
   works.forEach((work) => {
     const imgContainer = document.createElement("div");
     imgContainer.classList.add("img-container");
@@ -80,6 +86,7 @@ function displayModalGallery(works) {
   });
 }
 
+// Gloval variable that need loaded DOM to work correctly
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("input-form");
   const titleInput = document.getElementById("input-texte");
@@ -126,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return isValid;
   };
 
+  // Create visualization of the selected picture
   photoInput.addEventListener("change", function (event) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -136,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const imgPreview = document.createElement("img");
       imgPreview.src = e.target.result;
-      imgPreview.style.width = "100%"; // Adjust as needed
+      imgPreview.style.width = "100%";
       imgPreview.style.height = "auto";
 
       fenetreAjout.appendChild(imgPreview);
@@ -155,7 +163,7 @@ document.addEventListener("DOMContentLoaded", () => {
   categorySelect.addEventListener("change", validateForm);
 
   form.addEventListener("submit", async function (event) {
-    event.preventDefault(); // Prevent the form from submitting normally
+    event.preventDefault();
 
     // Perform final validation before submit
     let isValid = true;
@@ -237,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
   validateForm(); // Initial call to set the correct button style
 });
 
-// Fonction pour envoyer une requête DELETE à l'API
+// Function to send request to the API DELETE
 async function deleteWork(event) {
   const workId = event.target.dataset.id;
 
@@ -265,12 +273,12 @@ async function deleteWork(event) {
   }
 }
 
-// Gestion de l'ajout de photo
+// Interaction between modal1,2 and homepage when clicked
 document
   .querySelector(".add-photo-button")
   .addEventListener("click", function () {
     document.getElementById("modal1").style.display = "none";
-    document.getElementById("modal2").style.display = "flex"; // Use 'flex' to ensure proper centering
+    document.getElementById("modal2").style.display = "flex";
     modal = document.getElementById("modal2");
     modal.addEventListener("click", closeModal);
     modal
@@ -283,7 +291,7 @@ document
 
 document.querySelector(".js-modal-back").addEventListener("click", function () {
   document.getElementById("modal2").style.display = "none";
-  document.getElementById("modal1").style.display = "flex"; // Use 'flex' to ensure proper centering
+  document.getElementById("modal1").style.display = "flex";
   modal = document.getElementById("modal1");
   modal.addEventListener("click", closeModal);
   modal.querySelector(".js-modal-close").addEventListener("click", closeModal);
@@ -296,24 +304,24 @@ document.querySelectorAll(".js-modal-close").forEach((closeButton) => {
   closeButton.addEventListener("click", closeModal);
 });
 
-// Fonction pour ajouter les catégories au select
+// Function to get categories on form
 async function populateCategories() {
   const select = document.getElementById("categorie");
 
-  // Vérifier si le select existe
+  // Check if select is present
   if (!select) {
     console.error("L'élément select n'a pas été trouvé");
     return;
   }
 
-  // Effacer le contenu existant
-  select.innerHTML = ""; // Clear existing content
-
+  // Delete existing content
+  select.innerHTML = "";
   try {
     const response = await fetch("http://localhost:5678/api/categories");
     if (response.ok) {
       const categories = await response.json();
 
+      // Display categories on form
       categories.forEach((category) => {
         const option = document.createElement("option");
         option.value = category.id;
@@ -328,6 +336,7 @@ async function populateCategories() {
   }
 }
 
+// Waiting Dom Loaded before start function
 document.addEventListener("DOMContentLoaded", () => {
   populateCategories();
 });
