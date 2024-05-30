@@ -136,6 +136,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Create visualization of the selected picture
   photoInput.addEventListener("change", function (event) {
     const file = event.target.files[0];
+    photoError.textContent = "";
+
+    if (file.size > 4 * 1024 * 1024) {
+      photoError.textContent = "L'image doit faire moins de 4mo.";
+      return;
+    }
+
     const reader = new FileReader();
 
     reader.onload = function (e) {
